@@ -66,3 +66,39 @@ class Solution:
             if carry == 1:
                 last_l2_temp.next = ListNode(1)
             return l1
+
+# Optimized
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        carry = 0
+        p = l1
+        q = l2
+        tail = None
+
+        sum = 0
+        carry = 0
+
+        while p and q:
+            sum = p.val + q.val + carry
+            p.val = sum % 10
+            carry = sum // 10
+            tail = p
+            p = p.next
+            q = q.next
+
+        if q:
+            tail.next = q
+            p = q
+
+        while p:
+            sum = p.val + carry
+            p.val = sum % 10
+            carry = sum // 10
+
+            tail = p
+            p = p.next
+
+        if carry == 1:
+            tail.next = ListNode(1)
+
+        return l1
