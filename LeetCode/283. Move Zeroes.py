@@ -1,5 +1,8 @@
 # Time Complexity: O(n)
 # Space Complexity: O(n)
+from typing import List
+
+
 class Solution(object):
     def moveZeroes(self, nums):
         """
@@ -46,3 +49,31 @@ class Solution(object):
         while i_non_zero < len(nums):
             nums[i_non_zero] = 0
             i_non_zero += 1
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        # O(n**2)
+        # i = 0
+        # j = 0
+        # while i < len(nums) and j < len(nums):
+        #     if nums[i] == 0:
+        #         del nums[i] # delete in python is O(n)
+        #         nums.append(0)
+        #         j += 1
+        #     else:
+        #         i += 1
+        #         j += 1
+
+        # O(n) two pointers
+        last_nonzero = 0
+        temp = 0
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                temp = nums[last_nonzero]
+                nums[last_nonzero] = nums[i]
+                nums[i] = temp
+                last_nonzero += 1
+                # 0 1 3 12
