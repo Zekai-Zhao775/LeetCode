@@ -3,6 +3,31 @@ from typing import List
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
+        i = 0
+        j = len(height) - 1
+        move_flag = 0
+        left_max = i
+        right_max = j
+        water_max = (j - i) * min(height[i], height[j])
+        while i < j:
+            water = (j - i) * min(height[i], height[j])
+            if water >= water_max:
+                left_max = i
+                right_max = j
+                if move_flag == 0:
+                    move_flag = 1
+                elif move_flag == 1:
+                    move_flag = 0
+            elif water < water_max:
+                if move_flag == 0:
+                    i += 1
+                elif move_flag == 1:
+                    j -= 1
+
+        return water_max
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
         # O(n**2)
         # iterate n*n to calculate every posibility
         # max = 0
