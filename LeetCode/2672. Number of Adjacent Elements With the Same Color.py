@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def colorTheArray(self, n: int, queries: List[List[int]]) -> List[int]:
         # edge case
