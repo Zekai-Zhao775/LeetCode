@@ -19,3 +19,13 @@ class Solution:
         root.left = root.right
         root.right = node_temp
         return root
+
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root != None:
+            temp = root.left
+            root.left = root.right
+            root.right = temp
+            self.invertTree(root.left)
+            self.invertTree(root.right)
+        return root
