@@ -9,32 +9,61 @@ class TreeNode:
         self.left = left
         self.right = right
 
-# level-order BFS
+
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        q = deque()
+        q.append((root, 0))
         result = []
+        level_curr = 0
+        num_curr = -101
 
-        def bfsLevel():
-            if not root:
-                return
-            queue = deque()
-            queue.append(root)
+        while q:
+            node, level = q.popleft()
+            if node.left:
+                q.append((node.left, level + 1))
+            if node.right:
+                q.append((node.right, level + 1))
+            if level == level_curr:
+                num_curr = node.val
+            elif level != level_curr:
+                result.append(num_curr)
+                level_curr += 1
+                num_curr = node.val
 
-            while queue:
-                level_size = len(queue)
-                i = 0
-                for i in range(level_size):
-                    node = queue.popleft()
-                    print(node.val)
-                    if i == level_size - 1:
-                        result.append(node.val)
-                    if node.left:
-                        queue.append(node.left)
-                    if node.right:
-                        queue.append(node.right)
+        if num_curr != -101:
+            result.append(num_curr)
 
-        bfsLevel()
         return result
+
+# level-order BFS
+# class Solution:
+#     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+#         result = []
+#
+#         def bfsLevel():
+#             if not root:
+#                 return
+#             queue = deque()
+#             queue.append(root)
+#
+#             while queue:
+#                 level_size = len(queue)
+#                 i = 0
+#                 for i in range(level_size):
+#                     node = queue.popleft()
+#                     print(node.val)
+#                     if i == level_size - 1:
+#                         result.append(node.val)
+#                     if node.left:
+#                         queue.append(node.left)
+#                     if node.right:
+#                         queue.append(node.right)
+#
+#         bfsLevel()
+#         return result
 
 # Wrong Answer 213 / 217 testcases passed
 # class Solution:
