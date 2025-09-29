@@ -3,6 +3,33 @@ from typing import List
 
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
+        # pick a place in the middle, then the side that't bigger then this place must have one peek
+        # cause nums[-1] = nums[n] = -∞
+        # if both sides bigger, we always choose right side
+
+        # edge case
+        if len(nums) == 1:
+            return 0
+
+        left = 0
+        right = len(nums) - 1
+        mid = 0
+
+        while left <= right:
+            mid = (left + right) // 2
+            if mid - 1 < 0 and nums[mid] > nums[mid + 1]:
+                return mid
+            elif mid + 1 > len(nums) - 1 and nums[mid] > nums[mid - 1]:
+                return mid
+            elif nums[mid] > nums[mid - 1] and nums[mid] > nums[mid + 1]:
+                return mid
+            elif nums[mid + 1] > nums[mid]:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
         # O(log n), so must be binary
 
         # nums[i] != nums[i + 1]
