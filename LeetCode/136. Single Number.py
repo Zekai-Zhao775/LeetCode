@@ -13,6 +13,9 @@ class Solution:
         # sort it first then scan, O(logn) time and O(1) space
 
         # use xor
+        # xor ^ satisfies both the commutative and associative laws
+        # commutative law 交换律
+        # associative laws 结合律
         # a xor a = 0, a ^ a = 0
         # a xor 0 = a, a ^ 0 = a
         # 0 xor 0 = 0, 0 ^ 0 = 0
