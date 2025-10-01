@@ -1,3 +1,25 @@
+from typing import List
+
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        # if we manually check digits from end to start
+        # it will be O(n), and worst case we have to insert in front, which is also O(n)
+        # might as well just convert
+
+        # optimization covering 90% cases
+        if digits[-1] < 9:
+            digits[-1] += 1
+            return digits
+
+        for i in range(len(digits)):
+            digits[i] = (str)(digits[i])
+        num = str(int("".join(digits)) + 1)
+        result = []
+        for i in range(len(num)):
+            result.append(int(num[i]))
+        return result
+
 class Solution(object):
     def plusOne(self, digits):
         """
