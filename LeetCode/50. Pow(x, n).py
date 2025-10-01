@@ -1,5 +1,20 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
+        if n == 0:
+            return 1.0
+        elif n == 1:
+            return x
+        elif n < 0:
+            return 1 / self.myPow(x, -n)
+        elif n % 2 == 0:
+            num = self.myPow(x, n / 2)
+            return num * num
+        else:
+            return self.myPow(x, n // 2) * self.myPow(x, n // 2 + 1)
+
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
         # O(n)
         # x multiply itself n times
 
